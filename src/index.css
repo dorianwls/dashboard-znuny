@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-sans-condensed/500.css";
+@import "@fontsource/ibm-plex-sans-condensed/600.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Sistema visual del panel de Service Desk (tokens de shadcn/ui).
+  Lienzo mineral frío y un único acento azul petróleo (--primary).
+  ok / warn / bad / violet se reservan para el estado de los tickets.
+*/
+
+@theme inline {
+  --font-sans: "IBM Plex Sans Variable", system-ui, sans-serif;
+  --font-figures: "IBM Plex Sans Condensed", "IBM Plex Sans Variable", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Tokens propios del dominio */
+  --color-faint: var(--faint);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-band: var(--band);
+  --color-band-foreground: var(--band-foreground);
+  --color-band-muted: var(--band-muted);
+  --color-band-subtle: var(--band-subtle);
+  --color-band-highlight: var(--band-highlight);
+  --color-band-ring: var(--band-ring);
+  --color-band-alert: var(--band-alert);
+
+  --shadow-card: 0 1px 2px rgb(20 40 58 / 0.05), 0 4px 14px -6px rgb(20 40 58 / 0.08);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #eef1f0;
+  --foreground: #1a2230;
+  --card: #ffffff;
+  --card-foreground: #1a2230;
+  --popover: #ffffff;
+  --popover-foreground: #1a2230;
+  --primary: #0f6e8c;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f7f6;
+  --secondary-foreground: #3c4859;
+  --muted: #f5f7f6;
+  --muted-foreground: #637082;
+  --accent: #e2eff3;
+  --accent-foreground: #0b546b;
+  --destructive: #c9483f;
+  --border: #dfe4e3;
+  --input: #c8d1d0;
+  --ring: #0f6e8c;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #3c4859;
+  --sidebar-primary: #0f6e8c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e2eff3;
+  --sidebar-accent-foreground: #1a2230;
+  --sidebar-border: #dfe4e3;
+  --sidebar-ring: #0f6e8c;
+
+  --faint: #939dab;
+  --ok: #2e9467;
+  --ok-soft: #e1f2e9;
+  --warn: #b97a12;
+  --warn-soft: #fbefd9;
+  --bad: #c9483f;
+  --bad-soft: #fbe7e5;
+  --violet: #6a5ac2;
+  --violet-soft: #eeebfa;
+  --new: #7fa6ec;
+
+  /* Bandas destacadas ("Ahora mismo", detalle de ubicación). */
+  --band: #e4f0f3;
+  --band-foreground: #1a2230;
+  --band-muted: #3c4859;
+  --band-subtle: #637082;
+  --band-highlight: #0f6e8c;
+  --band-ring: #dfe4e3;
+  --band-glow: rgb(15 110 140 / 0.12);
+  --band-alert: #c9483f;
+
+  /* Series de gráficos (validadas para daltonismo y contraste sobre --card). */
+  --chart-eficacia: #2a6fdb;
+  --chart-efectividad: #2e9467;
+  --chart-eficiencia: #7b5cd6;
+  --chart-open: #d08a1a;
+  --chart-fail: #c23a6a;
+  --chart-late: #d08a1a;
+  --chart-reopened: #7b5cd6;
+  --chart-overdue: #d4483e;
+  --chart-unsuccessful: #3f6fae;
+}
+
+.dark {
+  --background: #0e1a25;
+  --foreground: #e6edf3;
+  --card: #152433;
+  --card-foreground: #e6edf3;
+  --popover: #152433;
+  --popover-foreground: #e6edf3;
+  --primary: #4fb3d3;
+  --primary-foreground: #0a141d;
+  --secondary: #1a2c3d;
+  --secondary-foreground: #c3cfdb;
+  --muted: #1a2c3d;
+  --muted-foreground: #92a3b4;
+  --accent: #173d4f;
+  --accent-foreground: #8fd3ea;
+  --destructive: #ef7a70;
+  --border: #24384b;
+  --input: #33495e;
+  --ring: #4fb3d3;
+  --sidebar: #0a141d;
+  --sidebar-foreground: #b7c5d1;
+  --sidebar-primary: #5fc3df;
+  --sidebar-primary-foreground: #0a141d;
+  --sidebar-accent: rgb(255 255 255 / 0.07);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgb(255 255 255 / 0.1);
+  --sidebar-ring: #5fc3df;
+
+  --faint: #6c7f92;
+  --ok: #4cc28c;
+  --ok-soft: #173a2c;
+  --warn: #e2a43b;
+  --warn-soft: #3d2f15;
+  --bad: #ef7a70;
+  --bad-soft: #43201e;
+  --violet: #a596f0;
+  --violet-soft: #2b2650;
+  --new: #8fb4f2;
+
+  --band: #123047;
+  --band-foreground: #ffffff;
+  --band-muted: #b7c5d1;
+  --band-subtle: #8ea2b3;
+  --band-highlight: #5fc3df;
+  --band-ring: rgb(255 255 255 / 0.1);
+  --band-glow: rgb(95 195 223 / 0.18);
+  --band-alert: #ff9b92;
+
+  --chart-eficacia: #4a8ee6;
+  --chart-efectividad: #2fa36f;
+  --chart-eficiencia: #8a70e6;
+  --chart-open: #bd7f1c;
+  --chart-fail: #d9578a;
+  --chart-late: #bd7f1c;
+  --chart-reopened: #8a70e6;
+  --chart-overdue: #e0574d;
+  --chart-unsuccessful: #4f86c6;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans text-sm antialiased;
+    font-feature-settings: "tnum" 1;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Leaflet inyecta su propio DOM; estos ajustes no se pueden expresar con utilidades. */
+.lmap { font: inherit; }
+.lmap .lmap-pin { background: none; border: 0; }
+.lmap .lmap-pin > div > span { translate: -50% -50%; }
+.lmap .leaflet-tooltip, .lmap .leaflet-control-layers { color: #1a2230; }

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Dashboard estadístico para monitorear el rendimiento del servicio de soporte de TI." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef1f0" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e1a25" />
+    <link rel="icon" href="/icon-light-32x32.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="/icon-dark-32x32.png" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-icon.png" />
+    <script>
+      // Aplica el tema guardado antes del primer pintado (la misma que aplica next-themes).
+      (function () {
+        var pref = null
+        try { pref = localStorage.getItem('theme') } catch (e) {}
+        var dark = pref === 'dark' || (pref !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <title>Rendimiento del servicio | IT Service Desk</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
